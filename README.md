@@ -2,14 +2,12 @@ Role Name
 =========
 
 Ansible Sonatype Nexus role. Completely independent from any package manager.
-Does not require root or sudo permission to run.
+
 
 TODO
 ----
 - Add datadir (plus entry nexus-work={{datadir}} in conf/nexus.properties
 - Change default admin account (admin/admin123)
-
-
 
 Role Variables
 --------------
@@ -23,7 +21,8 @@ Role Variables
 Dependencies
 ------------
 
-wget (on host, not on clients)
+* wget (on host, not on clients)
+* service manager must be systemd or service
 
 Example Playbook
 ----------------

@@ -1,0 +1,25 @@
+- name: fail if service manager is not supported
+  fail:
+    msg="Service Manager {{ ansible_service_mgr }} is not supported"
+  when: "ansible_service_mgr not in ['service', 'systemd']"
+
+- name: Install the nexus service file
+  template:
+    src: nexus.service.j2
+    dest: /etc/systemd/system/nexus.service
+  when: ansible_service_mgr == 'systemd'
+  notify: reload systemctl daemon
+
+- name: Copy the /etc/init.d/nexus file
+  template:
+    src: init-nexus.j2
+    dest: /etc/init.d/nexus
+    owner: root
+    group: root
+    mode: 0755
+    backup: yes
+  when: ansible_service_mgr == 'service'
+
+- name: Set service start/stop order
+  command: chkconfig nexus reset
+  when: ansible_service_mgr == 'service'

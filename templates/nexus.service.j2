@@ -1,0 +1,17 @@
+[Unit]
+Description=Sonatype Nexus OSS
+After=network.target
+
+[Service]
+Type=forking
+WorkingDirectory={{ nexus_installation_dir }}/nexus-latest
+EnvironmentFile=-/etc/sysconfig/nexus
+PIDFile=/var/run/nexus/nexus.pid
+ExecStart=bin/nexus start
+ExecReload=bin/nexus restart
+ExecStop=bin/nexus stop
+User={{ nexus_os_user }}
+Group={{ nexus_os_group }}
+
+[Install]
+WantedBy=multi-user.target
