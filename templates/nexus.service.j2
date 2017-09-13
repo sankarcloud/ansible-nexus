@@ -4,7 +4,7 @@ After=network.target
 
 [Service]
 Type=forking
-EnvironmentFile=-/etc/sysconfig/nexus
+EnvironmentFile={{ nexus_service_configuration }}
 PIDFile=/var/run/nexus/nexus.pid
 ExecStart=/usr/share/nexus-latest/bin/nexus start
 ExecReload=/usr/share/nexus-latest/bin/nexus restart

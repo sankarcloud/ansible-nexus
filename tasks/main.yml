@@ -91,7 +91,7 @@
 
 - name: Set permissions and ownership on Nexus pid directory
   file:
-    path: /var/run/nexus
+    path: "{{ nexus_pid_dir }}"
     owner: "{{ nexus_os_user }}"
     group: "{{ nexus_os_group }}"
     state: directory

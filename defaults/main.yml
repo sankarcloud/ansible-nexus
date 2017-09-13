@@ -12,3 +12,5 @@ nexus_os_user: 'nexus'
 nexus_create_os_group: "{{ nexus_create_os_user | bool }}"
 nexus_os_group: 'nexus'
 nexus_os_user_shell: '/bin/bash'
+nexus_service_configuration: "{{ '/etc/default/nexus' if ansible_os_family == 'Debian' else '/etc/sysconfig/nexus' }}"
+nexus_pid_dir: "/var/run/nexus"

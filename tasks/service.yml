@@ -10,6 +10,12 @@
   when: ansible_service_mgr == 'systemd'
   notify: reload systemctl daemon
 
+- name: Install the nexus service configuration file
+  template:
+    src: nexus.j2
+    dest: "{{ nexus_service_configuration }}"
+  when: ansible_service_mgr == 'systemd'
+
 - name: Copy the /etc/init.d/nexus file
   template:
     src: init-nexus.j2
