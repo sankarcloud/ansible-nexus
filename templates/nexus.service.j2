@@ -4,12 +4,11 @@ After=network.target
 
 [Service]
 Type=forking
-WorkingDirectory={{ nexus_installation_dir }}/nexus-latest
 EnvironmentFile=-/etc/sysconfig/nexus
 PIDFile=/var/run/nexus/nexus.pid
-ExecStart=bin/nexus start
-ExecReload=bin/nexus restart
-ExecStop=bin/nexus stop
+ExecStart=/usr/share/nexus-latest/bin/nexus start
+ExecReload=/usr/share/nexus-latest/bin/nexus restart
+ExecStop=/usr/share/nexus-latest/bin/nexus stop
 User={{ nexus_os_user }}
 Group={{ nexus_os_group }}
 
