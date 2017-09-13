@@ -3,8 +3,9 @@
 - name: Download nexus_package
   get_url:
     url: "http://download.sonatype.com/nexus/oss/{{ nexus_package }}"
-    dest: "{{ nexus_download_dir }}/{{ nexus_package }}"
+    dest: "{{ nexus_download_dir }}/"
   tags: download
+  register: get_url
 
 - name: Ensure Nexus o/s group exists
   group:
@@ -27,9 +28,13 @@
 
 - include: service.yml
 
+- name: set nexus version correctly
+  set_fact:
+    nexus_version: "{{ get_url.dest | basename | replace('nexus-', '') | replace('-bundle.tar.gz', '') }}"
+
 - name: Unpack Nexus download
   unarchive:
-    src: "{{ nexus_download_dir }}/{{ nexus_package }}"
+    src: "{{ get_url.dest }}"
     dest: "{{ nexus_installation_dir }}"
     creates: "{{ nexus_installation_dir }}/nexus-{{ nexus_version }}"
     force: no
@@ -45,6 +50,7 @@
     state: link
     src: "{{ nexus_installation_dir }}/nexus-{{ nexus_version }}"
     dest: "{{ nexus_installation_dir }}/nexus-latest"
+    force: yes
 
 - name: Install createrepo for nexus-yum-repository-plugin
   yum:
