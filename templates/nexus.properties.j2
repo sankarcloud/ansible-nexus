@@ -1,0 +1,18 @@
+# {{ ansible_managed }}
+#
+# Sonatype Nexus
+# ==============
+# This is the most basic configuration of Nexus.
+
+# Jetty section
+application-port={{ nexus_port }}
+application-host={{ nexus_listen_host }}
+nexus-webapp=${bundleBasedir}/nexus
+nexus-webapp-context-path=/nexus
+
+# Nexus section
+nexus-work={{ nexus_working_dir }}
+runtime=${bundleBasedir}/nexus/WEB-INF
+
+# orientdb buffer size in megabytes
+storage.diskCache.bufferSize={{ nexus_diskcache_buffersize }}
