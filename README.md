@@ -17,6 +17,7 @@ Role Variables
 - **nexus_installation_dir**: installation prefix that will be used on installation hosts. Defaults to *'/usr/share'*
 - **nexus_work_dir**: working directory, aka sonatype-work
 - **nexus_port**: TCP port
+- **nexus_webapp_context**: default root path of the webapp (default: /nexus)
 
 Dependencies
 ------------

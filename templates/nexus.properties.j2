@@ -8,7 +8,7 @@
 application-port={{ nexus_port }}
 application-host={{ nexus_listen_host }}
 nexus-webapp=${bundleBasedir}/nexus
-nexus-webapp-context-path=/nexus
+nexus-webapp-context-path={{ nexus_webapp_context }}
 
 # Nexus section
 nexus-work={{ nexus_working_dir }}

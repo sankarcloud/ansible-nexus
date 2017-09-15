@@ -16,3 +16,4 @@ nexus_os_user_shell: '/bin/bash'
 nexus_service_configuration: "{{ '/etc/default/nexus' if ansible_os_family == 'Debian' else '/etc/sysconfig/nexus' }}"
 nexus_pid_dir: "/var/run/nexus"
 nexus_diskcache_buffersize: 4096
+nexus_webapp_context: "/nexus"
